@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"
+    />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <title>Alejandro Javier Lucas Martinez</title>
+
+    <style>
+      :root {
+        --salmon: rgb(199, 47, 16);
+        --tiffany-blue: #7fdcc8;
+        --yinmn-blue: #324d71;
+      }
+
+      body {
+        background-image: url('https://purepng.com/public/uploads/large/purepng.com-spidermanspidermanspiderman-marvelmarvel-comicscharacterhero-1701528659690rptim.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        color: white;
+      }
+
+      .jumbotron {
+        background-color: rgba(246, 246, 253, 0.6);
+        color: black;
+      }
+
+      .navbar {
+        border-radius: 0;
+      }
+
+      .dropdown-menu {
+        background-color: white;
+        padding: 10px;
+      }
+
+      .dropdown-menu a {
+        color: black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-default" style="background-color: var(--salmon);">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#main-navbar"
+          >
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html" style="background: var(--tiffany-blue);">
+            Inicio
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <ul class="nav navbar-nav">
+            <!-- Unidad 1 -->
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                style="color: var(--yinmn-blue);"
+              >
+                Unidad 1 <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="conceptos-malware.html">Conceptos</a></li>
+                <li><a href="ataques.html">Ataques</a></li>
+                <li><a href="#">Protección</a></li>
+              </ul>
+            </li>
+
+            <!-- Unidad 2 -->
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                style="color: var(--tiffany-blue);"
+              >
+                Unidad 2 <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Conceptos</a></li>
+                <li><a href="#">Ataques</a></li>
+                <li><a href="#">Protección</a></li>
+              </ul>
+            </li>
+
+            <!-- Unidad 3 -->
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                style="color: var(--tiffany-blue);"
+              >
+                Unidad 3 <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Conceptos</a></li>
+                <li><a href="#">Ataques</a></li>
+                <li><a href="#">Protección</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-4">Mi página web personal</h1>
+        <p class="lead">Hola, ¿cómo están bros?</p>
+        <hr class="my-4" />
+        <p>
+          Se utilizan clases utilitarias para tipografía y espaciado para distribuir
+          el contenido dentro del contenedor.
+        </p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="conceptos-malware.html" role="button">
+            Ir a Conceptos
+          </a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
