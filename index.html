@@ -1,151 +1,329 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"
-    />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calculadora Retro — Alejandro Javier</title>
 
-    <title>Alejandro Javier Lucas Martinez</title>
+  <style>
+    /* ------------------------
+       Retro 80s LCD Green Theme + Top Nav
+       ------------------------ */
+    :root{
+      --bg:#07121a;
+      --panel:#0c1620;
+      --lcd-bg:#081a10;
+      --lcd-glow:#1aff4d;
+      --button:#0f1b25;
+      --button-edge:#091018;
+      --accent:#1aff4d;
+      --text:#b7f7b9;
+      --muted:#7d9a8a;
+      --nav-bg:rgba(5,12,8,0.25);
+      --nav-border:rgba(26,255,80,0.08);
+    }
 
-    <style>
-      :root {
-        --salmon: rgb(199, 47, 16);
-        --tiffany-blue: #7fdcc8;
-        --yinmn-blue: #324d71;
-      }
+    html,body{
+      height:100%;
+      margin:0;
+      font-family:"Courier New",Courier,monospace;
+      background:
+        radial-gradient(ellipse at 20% 10%,rgba(26,60,30,0.09) 0%,transparent 20%),
+        radial-gradient(ellipse at 80% 90%,rgba(10,30,10,0.06) 0%,transparent 25%),
+        var(--bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      color:var(--text);
+      flex-direction:column;
+      gap:18px;
+    }
 
-      body {
-        background-image: url('https://purepng.com/public/uploads/large/purepng.com-spidermanspidermanspiderman-marvelmarvel-comicscharacterhero-1701528659690rptim.png');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        color: white;
-      }
+    /* === Top Navigation (retro style) === */
+    .topnav {
+      width:100%;
+      max-width:920px;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      padding:14px; /* más espacio interno */
+      margin-top:25px; /* 💡 baja la barra un poco */
+      background:linear-gradient(180deg,rgba(0,0,0,0.18),rgba(0,0,0,0.06));
+      border:1px solid var(--nav-border);
+      border-radius:6px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.02);
+      backdrop-filter:blur(4px);
+    }
 
-      .jumbotron {
-        background-color: rgba(246, 246, 253, 0.6);
-        color: black;
-      }
+    .topnav a {
+      display:inline-block;
+      padding:8px 14px;
+      color:var(--text);
+      text-decoration:none;
+      font-weight:700;
+      font-size:13px;
+      border-radius:4px;
+      border:1px solid rgba(0,0,0,0.45);
+      background:linear-gradient(180deg,rgba(5,20,10,0.25),rgba(10,30,12,0.12));
+      box-shadow:0 4px 0 rgba(0,0,0,0.55);
+      transition:transform .08s linear,box-shadow .08s linear,box-shadow .18s ease,color .18s ease;
+      letter-spacing:1px;
+    }
 
-      .navbar {
-        border-radius: 0;
-      }
+    .topnav a:hover{
+      color:var(--accent);
+      text-shadow:0 0 6px rgba(26,255,85,0.4);
+      transform:translateY(2px);
+      box-shadow:0 2px 0 rgba(0,0,0,0.6),0 0 18px rgba(26,255,85,0.15);
+    }
 
-      .dropdown-menu {
-        background-color: white;
-        padding: 10px;
-      }
+    /* container */
+    .retro-wrap{
+      width:360px;
+      max-width:92vw;
+      background:linear-gradient(180deg,#041016 0%,#08121a 60%);
+      border:3px solid #061017;
+      box-shadow:0 10px 30px rgba(0,0,0,0.8),inset 0 2px 0 rgba(255,255,255,0.02);
+      padding:18px;
+      border-radius:8px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      position:relative;
+    }
 
-      .dropdown-menu a {
-        color: black;
-      }
-    </style>
-  </head>
+    /* header label retro */
+    .retro-header{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      justify-content:space-between;
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:1px;
+    }
 
-  <body>
-    <nav class="navbar navbar-default" style="background-color: var(--salmon);">
-      <div class="container">
-        <div class="navbar-header">
-          <button
-            type="button"
-            class="navbar-toggle collapsed"
-            data-toggle="collapse"
-            data-target="#main-navbar"
-          >
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.html" style="background: var(--tiffany-blue);">
-            Inicio
-          </a>
-        </div>
+    .brand{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
 
-        <div class="collapse navbar-collapse" id="main-navbar">
-          <ul class="nav navbar-nav">
-            <!-- Unidad 1 -->
-            <li class="dropdown">
-              <a
-                href="#"
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                style="color: var(--yinmn-blue);"
-              >
-                Unidad 1 <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="conceptos-malware.html">Conceptos</a></li>
-                <li><a href="ataques.html">Ataques</a></li>
-                <li><a href="#">Protección</a></li>
-              </ul>
-            </li>
+    .led{
+      width:10px;height:10px;
+      background:linear-gradient(180deg,#0bff3a,#007a15);
+      box-shadow:0 0 8px rgba(30,255,80,0.28),inset 0 -2px 4px rgba(0,0,0,0.3);
+      border-radius:2px;
+      border:1px solid rgba(0,0,0,0.5);
+    }
 
-            <!-- Unidad 2 -->
-            <li class="dropdown">
-              <a
-                href="#"
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                style="color: var(--tiffany-blue);"
-              >
-                Unidad 2 <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Conceptos</a></li>
-                <li><a href="#">Ataques</a></li>
-                <li><a href="#">Protección</a></li>
-              </ul>
-            </li>
+    /* lcd panel */
+    .lcd{
+      background:repeating-linear-gradient(to bottom,rgba(0,0,0,0.04) 0px,rgba(0,0,0,0.04) 1px,transparent 1px,transparent 3px),
+                 linear-gradient(180deg,rgba(6,20,10,1),rgba(4,12,8,1));
+      border-radius:6px;
+      padding:12px;
+      border:2px solid rgba(10,40,10,0.6);
+      box-shadow:0 0 30px rgba(10,240,80,0.03),inset 0 2px 14px rgba(0,0,0,0.6);
+    }
 
-            <!-- Unidad 3 -->
-            <li class="dropdown">
-              <a
-                href="#"
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                style="color: var(--tiffany-blue);"
-              >
-                Unidad 3 <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Conceptos</a></li>
-                <li><a href="#">Ataques</a></li>
-                <li><a href="#">Protección</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+    .lcd-screen{
+      height:76px;
+      background:linear-gradient(180deg,#05170b 0%,#081f0f 100%);
+      border-radius:6px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      padding:12px 16px;
+      box-shadow:inset 0 -4px 14px rgba(0,0,0,0.6);
+      overflow:hidden;
+      border:1px solid rgba(20,80,30,0.25);
+      position:relative;
+    }
+
+    #ans{
+      width:100%;
+      background:transparent;
+      border:none;
+      outline:none;
+      color:var(--lcd-glow);
+      font-size:30px;
+      line-height:1;
+      font-weight:700;
+      letter-spacing:2px;
+      text-align:right;
+      font-family:"Courier New",monospace;
+      text-shadow:0 0 6px rgba(26,255,85,0.25),0 0 12px rgba(26,255,85,0.12);
+    }
+
+    .lcd-screen::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(transparent 60%,rgba(0,0,0,0.06) 61%);
+      mix-blend-mode:overlay;
+      pointer-events:none;
+    }
+
+    .keys{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+    }
+
+    .key{
+      background:linear-gradient(180deg,#0b1c1a 0%,#071215 100%);
+      border:2px solid var(--button-edge);
+      height:56px;
+      border-radius:4px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:18px;
+      color:var(--text);
+      box-shadow:0 6px 0 rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.02);
+      cursor:pointer;
+      user-select:none;
+      transition:transform 0.08s linear,box-shadow 0.08s linear,background 0.12s ease;
+      letter-spacing:1px;
+    }
+
+    .key:active,.key.pressed{
+      transform:translateY(4px);
+      box-shadow:0 2px 0 rgba(0,0,0,0.6);
+    }
+
+    .key.num{background:linear-gradient(180deg,#0e2a20,#051615);}
+    .key.op{background:linear-gradient(180deg,#08321b,#042212);color:var(--accent);font-weight:700;text-shadow:0 0 6px rgba(26,255,85,0.12);}
+    .key.clear{background:linear-gradient(180deg,#3a0f0f,#1c0606);color:#ffb3b3;}
+    .key.zero{grid-column:span 2;}
+    .key.equal{grid-column:span 2;background:linear-gradient(180deg,#0b3b14,#04220b);color:var(--accent);font-weight:800;}
+    .note{font-size:12px;color:var(--muted);text-align:center;}
+
+    @media (max-width:420px){
+      .retro-wrap{width:320px;padding:14px;}
+      .lcd-screen{height:64px}
+      #ans{font-size:26px}
+    }
+  </style>
+</head>
+<body>
+  <nav class="topnav" aria-label="Navegación principal">
+    <a href="index.html">Inicio</a>
+    <a href="unidad1.html">Unidad 1</a>
+    <a href="unidad2.html">Unidad 2</a>
+    <a href="unidad3.html">Unidad 3</a>
+  </nav>
+
+  <div class="retro-wrap" role="application" aria-label="Calculadora retro">
+    <div class="retro-header">
+      <div class="brand">
+        <div style="font-weight:700;color:#9fdca0;font-size:13px">Alejandro CALC</div>
+        <div class="led" title="power"></div>
       </div>
-    </nav>
+      <div style="font-size:12px;color:var(--muted)">Programación 5A</div>
+    </div>
 
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-4">Mi página web personal</h1>
-        <p class="lead">Hola, ¿cómo están bros?</p>
-        <hr class="my-4" />
-        <p>
-          Se utilizan clases utilitarias para tipografía y espaciado para distribuir
-          el contenido dentro del contenedor.
-        </p>
-        <p class="lead">
-          <a class="btn btn-primary btn-lg" href="conceptos-malware.html" role="button">
-            Ir a Conceptos
-          </a>
-        </p>
+    <div class="lcd">
+      <div class="lcd-screen">
+        <input id="ans" type="text" readonly value="">
       </div>
     </div>
-  </body>
+
+    <div class="keys">
+      <div class="key clear" data-key="C">C</div>
+      <div class="key op" data-key="%">%</div>
+      <div class="key" data-key="Back">←</div>
+      <div class="key op" data-key="/">÷</div>
+
+      <div class="key num" data-key="7">7</div>
+      <div class="key num" data-key="8">8</div>
+      <div class="key num" data-key="9">9</div>
+      <div class="key op" data-key="*">×</div>
+
+      <div class="key num" data-key="4">4</div>
+      <div class="key num" data-key="5">5</div>
+      <div class="key num" data-key="6">6</div>
+      <div class="key op" data-key="-">−</div>
+
+      <div class="key num" data-key="1">1</div>
+      <div class="key num" data-key="2">2</div>
+      <div class="key num" data-key="3">3</div>
+      <div class="key op" data-key="+">+</div>
+
+      <div class="key num zero" data-key="0">0</div>
+      <div class="key num" data-key=".">.</div>
+      <div class="key equal" data-key="=">=</div>
+    </div>
+
+    <div class="note">Usa el teclado: números, + - * / . Enter = Backspace Esc (C)</div>
+  </div>
+
+  <script>
+    (function(){
+      const display=document.getElementById('ans');
+      const keys=Array.from(document.querySelectorAll('.key'));
+      let current='';
+
+      function refresh(){display.value=current;}
+      function append(val){
+        if(/^[+\-*/%]$/.test(val)&&current==='')return;
+        current+=val;refresh();
+      }
+      function clearAll(){current='';refresh();}
+      function back(){current=current.slice(0,-1);refresh();}
+      function compute(){
+        if(!current)return;
+        let expr=current.replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-');
+        expr=expr.replace(/(\d+(\.\d+)?)%/g,'($1/100)');
+        try{
+          let res=eval(expr);
+          if(typeof res==='number'&&!Number.isInteger(res))res=Math.round(res*1e9)/1e9;
+          current=String(res);
+        }catch(e){current='Error';}
+        refresh();
+      }
+
+      keys.forEach(k=>{
+        k.addEventListener('click',()=>{
+          const key=k.getAttribute('data-key');
+          k.classList.add('pressed');
+          setTimeout(()=>k.classList.remove('pressed'),110);
+          if(key==='C'){clearAll();return;}
+          if(key==='Back'){back();return;}
+          if(key==='='){compute();return;}
+          append(key);
+        });
+      });
+
+      window.addEventListener('keydown',e=>{
+        const key=e.key;
+        if(key==='Enter'||key==='='){e.preventDefault();animateKey('=');compute();return;}
+        if(key==='Escape'){e.preventDefault();animateKey('C');clearAll();return;}
+        if(key==='Backspace'){e.preventDefault();animateKey('Back');back();return;}
+        if(/^[0-9+\-*/.%]$/.test(key)){e.preventDefault();animateKey(key);append(key);}
+      });
+
+      function animateKey(key){
+        const btn=keys.find(b=>{
+          const k=b.getAttribute('data-key');
+          if(key==='/'||key==='*'||key==='='||key==='Backspace'||key==='Escape')return(
+            (key==='/'&&k==='/')||
+            (key==='*'&&k==='*')||
+            (key==='='&&k==='=')||
+            (key==='Backspace'&&k==='Back')||
+            (key==='Escape'&&k==='C')
+          );
+          return k===key;
+        });
+        if(btn){
+          btn.classList.add('pressed');
+          setTimeout(()=>btn.classList.remove('pressed'),120);
+        }
+      }
+      clearAll();
+    })();
+  </script>
+</body>
 </html>
