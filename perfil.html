@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Los de 5A - Lucas Martínez Alejandro Javier</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #f0f0f0;
+      background: linear-gradient(-45deg, #2a003a, #3b0080, #160045, #4b0082);
+      background-size: 400% 400%;
+      animation: gradient 10s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 0;
+    }
+
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border-radius: 25px;
+      box-shadow: 0 0 30px rgba(0, 255, 120, 0.25);
+      width: 90%;
+      max-width: 900px;
+      padding: 30px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2em;
+      color: #fff;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px #00ffaa;
+    }
+
+    .profile {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 30px;
+    }
+
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 4px solid #00ffaa;
+      box-shadow: 0 0 25px #00ffaa;
+      animation: glow 3s ease-in-out infinite alternate;
+      object-fit: cover;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 15px #00ffaa, 0 0 30px #00ffaa; }
+      100% { box-shadow: 0 0 35px #00ffcc, 0 0 60px #00ffcc; }
+    }
+
+    .profile-info {
+      text-align: left;
+      color: #fff;
+    }
+
+    .profile-info p {
+      margin: 6px 0;
+      font-size: 1em;
+    }
+
+    .profile-info b {
+      color: #00ffaa;
+    }
+
+    .section {
+      background: rgba(255,255,255,0.07);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 25px;
+      text-align: left;
+      transition: all 0.3s ease;
+    }
+
+    .section:hover {
+      background: rgba(0,255,120,0.15);
+      transform: translateY(-3px);
+    }
+
+    .section h3 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00ffaa;
+      display: flex;
+      align-items: center;
+      font-size: 1.3em;
+      margin-bottom: 15px;
+    }
+
+    .section h3 i {
+      margin-right: 10px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 25px;
+    }
+
+    .info-grid p {
+      margin: 4px 0;
+      color: #e0e0e0;
+    }
+
+    .info-grid b {
+      color: #fff;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Los de 5A</h1>
+
+    <div class="profile">
+      <img src="https://pbs.twimg.com/media/GKptY_hWMAAV9Dv.jpg" alt="Foto de perfil" class="profile-img">
+      <div class="profile-info">
+        <h2>Lucas Martínez Alejandro Javier</h2>
+        <p><b>Género:</b> Masculino</p>
+        <p><b>Raza:</b> Humano</p>
+        <p><b>Nacimiento:</b> 4 de enero</p>
+        <p><b>Calle:</b> Grove Street</p>
+        <p><b>Ciudad:</b> Reynosa</p>
+        <p><b>Teléfono:</b> 8996747424</p>
+        <p><b>Celular:</b> 8991901976</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="section">
+      <h3><i class="fa fa-user"></i> Información Básica</h3>
+      <div class="info-grid">
+        <p><b>Email:</b> alejandroxd@gmail</p>
+        <p><b>Altura:</b> 1.75 m</p>
+        <p><b>Peso:</b> 75 kg</p>
+        <p><b>Color de pelo:</b> Café</p>
+        <p><b>Tipo de sangre:</b> O+</p>
+        <p><b>Signo Zodiacal:</b> Capricornio</p>
+        <p><b>Apellido Materno:</b> Martínez</p>
+        <p><b>Estado Civil:</b> Casado</p>
+        <p><b>Educación:</b> Preparatoria</p>
+        <p><b>Historial de Enfermedades:</b> Ninguna enfermedad</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3><i class="fa fa-briefcase"></i> Información de Empleado</h3>
+      <div class="info-grid">
+        <p><b>Estado de Empleado:</b> Tiempo completo</p>
+        <p><b>Salario Mensual:</b> 5000000</p>
+        <p><b>Ocupación:</b> Superhéroe</p>
+        <p><b>Nombre de la Empresa:</b> Hombre X</p>
+        <p><b>Tamaño de la Empresa:</b> 100</p>
+        <p><b>Industria:</b> Marvel</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
